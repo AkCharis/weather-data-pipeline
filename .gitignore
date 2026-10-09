@@ -1,0 +1,10 @@
+*.env
+*.venv/
+
+*.ipynb_checkpoints
+
+# Ignore everything inside quarantine_logs/
+quarantine_logs/*
+
+# EXCEPT for the .gitkeep file
+!quarantine_logs/.gitkeep
