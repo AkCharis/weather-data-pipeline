@@ -84,11 +84,11 @@ weather-data-pipeline/
 
 ### Prerequisites
 
-Python 3.10 or higher
+* Python 3.10 or higher
 
-PostgreSQL running locally or in a container
+* PostgreSQL running locally or in a container
 
-uv package manager (optional, but recommended)
+* uv package manager (optional, but recommended)
 
 ### Clone the Repository
 
@@ -174,7 +174,7 @@ Run the full pytest suite with mocking enabled:
 
 Once the data is ingested, you can query your metrics directly inside PostgreSQL:
 
--- Average temperature and wind speed per city
+***-- Average temperature and wind speed per city***
 ```
 SELECT 
     city_name,
