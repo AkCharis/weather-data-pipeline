@@ -3,6 +3,7 @@
 An end-to-end, production-grade ETL pipeline built in Python that fetches hourly forecast metrics from the Open-Meteo API, performs vector-based row-level data quality validation, quarantines invalid records with diagnostic messages, and persists clean records into a PostgreSQL data warehouse.
 
 📐 Pipeline Architecture
+```
 
                ┌────────────────────────┐
                │    Open-Meteo API      │
@@ -26,21 +27,22 @@ An end-to-end, production-grade ETL pipeline built in Python that fetches hourly
    │    src/db.py      │        │      quarantine_logs/          │
    │ PostgreSQL Store  │        │ CSV Logs + Error Diagnostics   │
    └───────────────────┘        └────────────────────────────────┘
+```
 
 
 ## Key Features
 
-Resilient API Extraction: Robust network exception handling and rate-limiting safeguards when pulling hourly metrics (temperature_2m, precipitation, wind_speed_10m).
+1. Resilient API Extraction: Robust network exception handling and rate-limiting safeguards when pulling hourly metrics (temperature_2m, precipitation, wind_speed_10m).
 
-Lineage & Auditability: Enriches raw payloads with extraction timestamps (extracted_at_utc) and geographical identifiers.
+2. Lineage & Auditability: Enriches raw payloads with extraction timestamps (extracted_at_utc) and geographical identifiers.
 
-Vectorized Data Quality Gateway: Employs high-performance Pandas and NumPy operations (np.select) to check data types, missing fields, and physical boundaries (-50°C to 60°C for temperature, non-negative values for precipitation and wind speed).
+3. Vectorized Data Quality Gateway: Employs high-performance Pandas and NumPy operations (np.select) to check data types, missing fields, and physical boundaries (-50°C to 60°C for temperature, non-negative values for precipitation and wind speed).
 
-Automated Quarantine System: Separates rejected rows and logs them into timestamped CSV files with explicit failure messages (Missing critical identifier, Temperature out of bounds, etc.).
+4. Automated Quarantine System: Separates rejected rows and logs them into timestamped CSV files with explicit failure messages (Missing critical identifier, Temperature out of bounds, etc.).
 
-Relational Persistence: Automatically creates database schemas and persists clean records into PostgreSQL using SQLAlchemy and psycopg2.
+5. Relational Persistence: Automatically creates database schemas and persists clean records into PostgreSQL using SQLAlchemy and psycopg2.
 
-Automated Test Suite: Full unit and integration test coverage using pytest and unittest.mock to simulate API behavior without making network calls.
+6. Automated Test Suite: Full unit and integration test coverage using pytest and unittest.mock to simulate API behavior without making network calls.
 
 ## Tech Stack & Tools
 
@@ -89,8 +91,10 @@ uv package manager (optional, but recommended)
 
 1. Clone the Repository
 
-[git clone](https://github.com/your-username/weather-data-pipeline.git)
+```
+git clone https://github.com/your-username/weather-data-pipeline.git
 cd weather-data-pipeline
+```
 
 
 2. Environment Setup
@@ -100,14 +104,15 @@ Set up a virtual environment and install dependencies defined in pyproject.toml:
 Using uv (Recommended):
 
 Automatically creates .venv and syncs dependencies from pyproject.toml
-uv sync
+`uv sync`
 
 
 Using standard Python venv & pip:
-
+```
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -e .
+```
 
 
 
@@ -115,7 +120,7 @@ pip install -e .
 
 Copy the example environment file and update it with your local PostgreSQL credentials:
 
-cp .env.example .env
+`cp .env.example .env`
 
 
 Edit .env:
@@ -133,14 +138,14 @@ DB_PASSWORD=your_password_here
 
 Ensure PostgreSQL is running, then create the target database:
 
-CREATE DATABASE weather_db;
+`CREATE DATABASE weather_db;`
 
 
 ## Running the Pipeline
 
 To execute the full end-to-end ingestion, validation, and persistence pipeline:
 
-uv run python main.py
+`uv run python main.py`
 
 
 ### Sample Output
@@ -162,7 +167,7 @@ Inserted 672 new unique records.
 
 Run the full pytest suite with mocking enabled:
 
-uv run pytest
+`uv run pytest`
 
 
 ## Sample SQL Queries
