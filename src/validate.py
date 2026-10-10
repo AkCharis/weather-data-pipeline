@@ -50,15 +50,19 @@ def get_valid_data(data):
 def log_bad_data(data):
     valid_mask = filter_data(data)
 
-    quarantine_data = data[~valid_mask].copy()
+    quarantine_data = data[~valid_mask].copy()   
 
     current_time = pd.Timestamp.today(tz='UTC').strftime('%Y-%m-%d-%H-%M-%S')
 
     # Output quarantine logs for invalid numeric columns
     if not is_numeric_type(quarantine_data):
         print("Cannot log data due to invalid numeric columns")
+
+        # Select all rows where numeric columns are of the type string
+        mask = quarantine_data[['wind_speed_10m', 'temperature_2m', 'precipitation']].map(type).eq(str).all(axis=1)
         
-        return quarantine_data[quarantine_data.map(type)==str].to_csv(f"quarantine_logs/invalid_record_type_{current_time}.csv", index=False)
+        return quarantine_data[mask].to_csv(f"quarantine_logs/invalid_numeric_type_{current_time}.csv", index=False)
+
 
     if not quarantine_data.empty:
         conditions = [

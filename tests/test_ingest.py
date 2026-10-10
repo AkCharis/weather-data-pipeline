@@ -4,7 +4,7 @@ import pytest
 import requests
 
 # Import the functions from your module
-from ingest import ingest_weather_data, load_data
+from src.ingest import ingest_weather_data, load_data
 
 @pytest.fixture
 def sample_cities():
@@ -74,7 +74,7 @@ def test_ingest_weather_data_api_failure(mock_sleep, mock_get, sample_cities, mo
     assert city_data_list[0]['city_name'].iloc[0] == 'London'
 
 
-@patch('ingest.ingest_weather_data')
+@patch('src.ingest.ingest_weather_data')
 def test_load_data_success(mock_ingest, sample_cities):
     """Tests concatenation into a single DataFrame when ingestion succeeds."""
     df1 = pd.DataFrame({'time': ['2026-10-09'], 'city_name': ['Lagos']})
@@ -88,7 +88,7 @@ def test_load_data_success(mock_ingest, sample_cities):
     assert list(merged_df['city_name']) == ['Lagos', 'London']
 
 
-@patch('ingest.ingest_weather_data')
+@patch('src.ingest.ingest_weather_data')
 def test_load_data_empty_response(mock_ingest, sample_cities):
     """Tests load_data behavior when all API requests fail and return an empty list."""
     mock_ingest.return_value = []

@@ -2,7 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import pytest
-from validate import filter_data, get_valid_data, is_numeric_type, log_bad_data
+from src.validate import filter_data, get_valid_data, is_numeric_type, log_bad_data
 
 
 @pytest.fixture
