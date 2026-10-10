@@ -4,7 +4,6 @@ An end-to-end, production-grade ETL pipeline built in Python that fetches hourly
 
 📐 Pipeline Architecture
 ```
-
                ┌────────────────────────┐
                │    Open-Meteo API      │
                └───────────┬────────────┘
@@ -46,20 +45,21 @@ An end-to-end, production-grade ETL pipeline built in Python that fetches hourly
 
 ## Tech Stack & Tools
 
-Language: Python 3.10+
+* Language: Python 3.10+
 
-Package Management: uv
+* Package Management: uv
 
-Data Transformation: Pandas, NumPy
+* Data Transformation: Pandas, NumPy
 
-Database & ORM: PostgreSQL, SQLAlchemy, Psycopg2
+* Database & ORM: PostgreSQL, SQLAlchemy, Psycopg2
 
-Testing Framework: pytest
+* Testing Framework: pytest
 
-Environment Management: python-dotenv
+* Environment Management: python-dotenv
 
 ## Project Structure
 
+```
 weather-data-pipeline/
 ├── quarantine_logs/            # Export folder for rejected records
 │   └── .gitkeep
@@ -77,11 +77,12 @@ weather-data-pipeline/
 ├── main.py                    # Root orchestrator script
 ├── pyproject.toml             # Project dependencies and tool configurations
 └── README.md                  # Project documentation
+```
 
 
 ## Getting Started
 
-**Prerequisites**
+### Prerequisites
 
 Python 3.10 or higher
 
@@ -89,7 +90,7 @@ PostgreSQL running locally or in a container
 
 uv package manager (optional, but recommended)
 
-1. Clone the Repository
+### Clone the Repository
 
 ```
 git clone https://github.com/your-username/weather-data-pipeline.git
@@ -97,17 +98,17 @@ cd weather-data-pipeline
 ```
 
 
-2. Environment Setup
+### Environment Setup
 
 Set up a virtual environment and install dependencies defined in pyproject.toml:
 
-Using uv (Recommended):
+**Using uv (Recommended):**
 
 Automatically creates .venv and syncs dependencies from pyproject.toml
 `uv sync`
 
 
-Using standard Python venv & pip:
+**Using standard Python venv & pip:**
 ```
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
@@ -115,8 +116,7 @@ pip install -e .
 ```
 
 
-
-3. Configure Credentials
+### Configure Credentials
 
 Copy the example environment file and update it with your local PostgreSQL credentials:
 
@@ -134,7 +134,7 @@ DB_PASSWORD=your_password_here
 ```
 
 
-4. Initialize Database Schema
+### Initialize Database Schema
 
 Ensure PostgreSQL is running, then create the target database:
 
