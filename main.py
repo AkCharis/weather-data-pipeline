@@ -8,8 +8,8 @@ from src import (
 
 CITIES = [
     {'city': 'Lagos', 'latitude': 6.5244, 'longitude': 3.3792},
-    {'city': 'London', 'latitude': 51.5074, 'longitude': -0.1278},
-    {'city': 'New York', 'latitude': 40.7128, 'longitude': -74.0060},
+    {'city': 'Port Harcourt', 'latitude': 4.7774, 'longitude': 7.0134},
+    {'city': 'Abuja', 'latitude': 9.05785, 'longitude': 7.4951},
     {'city': 'Ibadan', 'latitude': 7.3776, 'longitude': 3.9059},
 ]
 
